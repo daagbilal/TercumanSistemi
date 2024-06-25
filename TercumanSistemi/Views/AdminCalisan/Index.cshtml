@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using TercumanSistemi.Models.EntityFramework
+@model List<Tbl_Calisan>
+
+<h3>Çalışanlar</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Çalışan Adı</th>
+            <th>Çalışan E-Posta</th>
+            <th>Çalışan Durumu</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Ad @x.Soyad</td>
+                <td>@x.Eposta</td>
+                <td>@x.Durum</td>
+            </tr>
+        }
+    </table>
+</div>
+<a href="~/AdminCalisan/YeniCalisan" class="btn btn-primary">Yeni Çalışan</a>

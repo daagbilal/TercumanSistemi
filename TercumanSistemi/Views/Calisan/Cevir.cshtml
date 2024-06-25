@@ -1,0 +1,28 @@
+﻿@model TercumanSistemi.Models.EntityFramework.Tbl_Metin
+@{
+    ViewBag.Title = "Cevir";
+    Layout = "~/Views/Shared/CalısanLayout.cshtml";
+}
+
+@using (Html.BeginForm("Cevir", "Calisan", FormMethod.Post))
+{
+    <label>Kaynak Dil:</label>
+    @Html.TextBoxFor(x => x.kay_dil, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Hedef Dil:</label>
+    @Html.TextBoxFor(x => x.hed_dil, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+
+    <label>Çevirilecek Metin:</label>
+    @Html.TextAreaFor(x => x.Metin, new { @class = "form-control", @readonly = "readonly" })
+
+    <label>Çevrilmiş Metin:</label>
+    @Html.TextAreaFor(x => x.Cev_metin, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.Id)
+    <div style="margin-top: 10px">
+        <button class="btn btn-info">Kaydet</button>
+    </div>
+}
+
+
+

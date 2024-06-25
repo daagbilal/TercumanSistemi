@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/CalısanLayout.cshtml";
+}
+
+@using TercumanSistemi.Models.EntityFramework
+@model List<Tbl_Metin>
+
+<h3>Gelen Siparişler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Müşteri Adı</th>
+            <th>Ücret</th>
+            <th>Metni Görüntüle</th>
+            <th>Metni Çevir</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            if (Session["KullaniciId"].ToString() == x.Calisan_id.ToString() && x.Onay == true && x.Tam_onay == false)
+                {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Tbl_Musteri.Ad @x.Tbl_Musteri.Soyad</td>
+                <td>@x.Ucret TL</td>
+                <td><a href="~/Calisan/Goruntule/@x.Id" class="btn btn-info">Görüntüle</a></td>
+                <td><a href="~/Calisan/Cevir/@x.Id" class="btn btn-success">Çevir</a></td>
+            </tr>
+
+                }
+        }
+    </table>
+</div>
+<h3>Geçmiş Siparişler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Müşteri Adı</th>
+            <th>Ücret</th>
+            <th>Çeviri Metni Görüntüle</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            if (Session["KullaniciId"].ToString() == x.Calisan_id.ToString() && x.Tam_onay == true)
+            {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Tbl_Musteri.Ad @x.Tbl_Musteri.Soyad</td>
+                <td>@x.Ucret TL</td>
+                <td><a href="~/Calisan/CeviriGoruntule/@x.Id" class="btn btn-info">Görüntüle</a></td>
+            </tr>
+            }
+        }
+    </table>
+</div>
+

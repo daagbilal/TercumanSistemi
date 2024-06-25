@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using TercumanSistemi.Models.EntityFramework
+@model List<Tbl_Metin>
+
+<h3>Gelen Siparişler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Müşteri Adı</th>
+            <th>Ücret</th>
+            <th>Durum</th>
+            <th>Görüntüle</th>
+            <th>İşi Onayla</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            if (x.Tam_onay == false)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Tbl_Musteri.Ad @x.Tbl_Musteri.Soyad</td>
+                    <td>@x.Ucret TL</td>
+                    <td>
+                        @{
+                            var result = "";
+                            if (x.Onay == false)
+                            {
+                                result = "Onaylanmadı";
+                            }
+                            else if (x.Onay == true)
+                            {
+                                result = $"Teslim Edildi ({x.Tbl_Calisan.Ad} {x.Tbl_Calisan.Soyad})";
+                            }
+                            else if (x.Onay == true && x.Tam_onay == true)
+                            {
+                                result = "Çeviri Tamamlandı";
+                            }
+                        }
+                        @result
+                    </td>
+                    <td><a href="~/Admin/Goruntule/@x.Id" class="btn btn-info">Görüntüle</a></td>
+                    <td>
+                        @{
+                            if (x.Onay == false)
+                            {
+                                <a href="~/Admin/Onayla/@x.Id" class="btn btn-success">Onayla</a>
+                            }
+                        }
+
+                    </td>
+                </tr>
+
+            }
+        }
+    </table>
+</div>
+<h3>Tamamlanan Siparişler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Müşteri Adı</th>
+            <th>Çalışan Adı</th>
+            <th>Ücret</th>
+            <th>Çeviri Metni Görüntüle</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            if (x.Tam_onay == true)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Tbl_Musteri.Ad @x.Tbl_Musteri.Soyad</td>
+                    <td>@x.Tbl_Calisan.Ad</td>
+                    <td>@x.Ucret TL</td>
+                    <td><a href="" class="btn btn-info">Görüntüle</a></td>
+                </tr>
+
+            }
+        }
+    </table>
+</div>
+

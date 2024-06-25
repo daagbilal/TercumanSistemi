@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using TercumanSistemi.Models.EntityFramework
+@model List<Tbl_Musteri>
+
+<h3>Müşteriler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Müşteri Adı</th>
+            <th>Müşteri E-Posta</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Ad @x.Soyad</td>
+                <td>@x.Eposta</td>
+            </tr>
+        }
+    </table>
+</div>

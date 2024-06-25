@@ -1,0 +1,38 @@
+﻿
+@model TercumanSistemi.Models.EntityFramework.Tbl_Metin
+@{
+    ViewBag.Title = "Onayla";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Sipariş Onayla</h2>
+
+@using (Html.BeginForm("Onayla", "Admin", FormMethod.Post))
+{
+    <h2>Müşteri Güncelleme</h2>
+    @Html.HiddenFor(x => x.Id, new { @class = "form-control" })
+    <br />
+    <label>Müşteri Adı:</label>
+    @Html.TextBoxFor(x => x.Tbl_Musteri.Ad, new { @class = "form-control" , @readonly = "readonly" })
+    <br />
+    <label>Müşteri Soyadı:</label>
+    @Html.TextBoxFor(x => x.Tbl_Musteri.Soyad, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Çevirilecek Metin:</label>
+    @Html.TextAreaFor(x => x.Metin, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Sipariş Ücreti:</label>
+    @Html.TextBoxFor(x => x.Ucret, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Kaynak Dil:</label>
+    @Html.TextBoxFor(x => x.kay_dil, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Hedef Dil:</label>
+    @Html.TextBoxFor(x => x.hed_dil, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Çalışan Atama</label>
+    @Html.DropDownListFor(x => x.Calisan_id, (List<SelectListItem>)ViewBag.calisanlar, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Onayla</button>
+}
+

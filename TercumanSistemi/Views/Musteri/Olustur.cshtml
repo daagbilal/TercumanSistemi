@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Olustur";
+    Layout = "~/Views/Shared/MusteriLayout.cshtml";
+}
+@model TercumanSistemi.Models.EntityFramework.Tbl_Metin
+
+
+<style>
+    body {
+        font-family: sans-serif;
+    }
+
+    .form-container {
+        width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+<div class="form-container">
+    <form method="post">
+        <div class="form-group">
+            <label class="label">Çevrilecek Metin:</label>
+            <textarea class="input" id="metin" rows="10" name="Metin"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Kaynak Dil:</label>
+            <select class="select" id="kaynakDil" name="kay_dil">
+                <option value="tr">Türkçe</option>
+                <option value="en">İngilizce</option>
+                <option value="de">Almanca</option>
+                <option value="fr">Fransızca</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Hedef Dil:</label>
+            <select class="select" id="hedefDil" name="hed_dil">
+                <option value="tr">Türkçe</option>
+                <option value="en">İngilizce</option>
+                <option value="de">Almanca</option>
+                <option value="fr">Fransızca</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Kelime Sayısı:</label>
+            <input type="text" class="input" id="kelimeSayisi" readonly>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Ücret:</label>
+            <input type="text" class="input" id="ucret" name="Ucret" readonly>
+        </div>
+
+        <div class="button" style="width:100px" onclick="ceviriHesapla()">Hesapla</div><br />
+        <button type="submit" class="button" onclick="ceviriSiparisVer()">Çeviri Siparişi Ver</button>
+    </form>
+</div>
+
+<script>
+    function ceviriHesapla() {
+        var metin = document.getElementById("metin").value;
+        var kelimeSayisi = metin.split(" ").length;
+
+        document.getElementById("kelimeSayisi").value = kelimeSayisi;
+
+        var fiyatBirim = 3.00;
+        var ucret = kelimeSayisi * fiyatBirim;
+
+        document.getElementById("ucret").value = ucret;
+    }
+
+    function ceviriSiparisVer() {
+
+        alert("Çeviri siparişi verildi!");
+    }
+</script>
+
+

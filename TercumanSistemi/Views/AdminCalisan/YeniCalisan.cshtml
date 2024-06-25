@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "YeniCalisan";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+﻿@model TercumanSistemi.Models.EntityFramework.Tbl_Calisan
+
+<form method="post">
+    <label>Adı</label>
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Ad, "", new { @style = "color:red" })
+    <br />
+    <label>Soyadı</label>
+    @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Soyad, "", new { @style = "color:red" })
+    <br />
+    <label>E-Posta</label>
+    @Html.TextBoxFor(x => x.Eposta, new { @class = "form-control" })
+    <br />
+    <label>Şifre</label>
+    @Html.TextBoxFor(x => x.Sifre, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>
+

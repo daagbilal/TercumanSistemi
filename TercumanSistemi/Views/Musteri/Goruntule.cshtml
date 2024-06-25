@@ -1,0 +1,25 @@
+﻿﻿﻿@model TercumanSistemi.Models.EntityFramework.Tbl_Metin
+@{
+    ViewBag.Title = "Goruntule";
+    Layout = "~/Views/Shared/MusteriLayout.cshtml";
+}
+
+<label>Kaynak Dil:</label>
+@Html.TextBoxFor(x => x.kay_dil, new { @class = "form-control", @readonly = "readonly" })
+<br />
+<label>Hedef Dil:</label>
+@Html.TextBoxFor(x => x.hed_dil, new { @class = "form-control", @readonly = "readonly" })
+<br />
+
+<label>Çevirmen:</label>
+@Html.TextBoxFor(x => x.Tbl_Calisan.Ad, new { @class = "form-control", @readonly = "readonly" })
+<br />
+
+<label>Çevirilecek Metin:</label>
+@Html.TextAreaFor(x => x.Metin, new { @class = "form-control", @readonly = "readonly" })
+<br />
+
+<label>Çevrilmiş Metin:</label>
+@Html.TextAreaFor(x => x.Cev_metin, new { @class = "form-control", @readonly = "readonly" })
+<br />
+

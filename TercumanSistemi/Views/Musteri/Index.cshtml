@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MusteriLayout.cshtml";
+}
+
+@using TercumanSistemi.Models.EntityFramework;
+@model List<Tbl_Metin>
+
+<h3>Gönderilen Siparişler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Metin</th>
+            <th>Ücret</th>
+            <th>Onay</th>
+
+        </tr>
+        @foreach (var x in Model)
+        {
+            if (Session["MusteriId"].ToString() == x.Musteri_id.ToString() && x.Tam_onay == false)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Metin</td>
+                    <td>@x.Ucret TL</td>
+                    <td>
+                        @{
+                            var result = "";
+                            if (x.Onay == false)
+                            {
+                                result = "Bekleniyor.";
+                            }
+                            else if (x.Onay == true)
+                            {
+                                result = "İşleme alındı.";
+                            }
+                        }
+                        @result
+                    </td>
+
+                </tr>
+
+            }
+        }
+    </table>
+</div>
+<h3>Tamamlanan Siparişler</h3>
+<div class="orders">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Metin</th>
+            <th>Ücret</th>
+            <th>Metni Görüntüle</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            if (Session["MusteriId"].ToString() == x.Musteri_id.ToString() && x.Tam_onay == true)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Metin</td>
+                    <td>@x.Ucret TL</td>
+                    <td><a href="~/Musteri/Goruntule/@x.Id" class="btn btn-info">Görüntüle</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
